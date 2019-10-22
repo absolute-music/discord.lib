@@ -8,7 +8,7 @@ var dbjs=function(token, game, message) {
      client.setGame(game.length)
     }
    if(message){
-     message.channel.get(message.channel.id).send(message.send)
+     message.channel.send(message.length)
    }
    client.login(token).catch(throw new Error)
 }
