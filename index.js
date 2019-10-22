@@ -1,15 +1,32 @@
-let { message, Client } = require("discord.js");
+
+var login=function(token) {
+let Discord = require("discord.js");
 let client = new Discord.Client();
-var dbjs=function(token, game, message) {
-    if(token==="") {
+    if(token==="")return{
          throw new Error("Please input a token");
     }
-    if(game){
-     client.setGame(game.length)
-    }
-   if(message){
-     message.channel.send(message.length)
-   }
    client.login(token).catch(throw new Error)
 }
-exports.dbjs=dbjs;
+var sendmessage=function(message) {
+    
+let Discord = require("discord.js");
+let client = new Discord.Client();
+    if(message==="")return{
+        throw new Error("Please enter your message")
+    }
+    client.on("message", msg => {
+        msg.channel.send(message)
+    })
+    
+}
+
+var games =function(game, activity) {
+    if(game==="" || activity==="")return{
+        throw new Error("Please enter your game.")
+    }
+    
+    client.user.setActivity(game, { type: activity });
+}
+exports.sendmessage=sendmessage;
+exports.login=login;
+exports.games=games;
